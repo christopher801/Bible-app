@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Offline · Bible App</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #FFF4D6; color: #1F2937;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding: 24px; box-sizing: border-box; }
+    main { max-width: 440px; text-align: center; }
+    img { width: 84px; height: 84px; border-radius: 20px; }
+    h1 { font-size: 1.4rem; margin: 18px 0 8px; }
+    p { margin: 0 0 10px; line-height: 1.55; color: #4B5563; }
+    a, button { display: inline-block; margin-top: 14px; padding: 12px 20px; min-height: 44px; box-sizing: border-box; border: 0; border-radius: 10px;
+      background: #FC6C26; color: #1F2937; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="/icons/icon-192.png" alt="" />
+    <h1 data-t="title">You are offline</h1>
+    <p data-t="body">This page has not been saved on this device yet. Reconnect to the internet and try again. Pages and Bible text you have already opened remain available.</p>
+    <button type="button" id="retry" data-t="retry">Try again</button>
+  </main>
+  <script>
+    var T = {
+      en: { title: 'You are offline', body: 'This page has not been saved on this device yet. Reconnect to the internet and try again. Pages and Bible text you have already opened remain available.', retry: 'Try again' },
+      es: { title: 'Sin conexión', body: 'Esta página aún no se ha guardado en este dispositivo. Vuelve a conectarte a internet e inténtalo de nuevo. Las páginas y el texto bíblico que ya abriste siguen disponibles.', retry: 'Reintentar' },
+      ht: { title: 'Ou pa konekte', body: 'Paj sa a poko anrejistre sou aparèy sa a. Konekte ankò sou entènèt epi eseye anko. Paj ak tèks Bib ou te deja louvri yo toujou disponib.', retry: 'Eseye ankò' }
+    };
+    var lang = 'en';
+    try { var s = JSON.parse(localStorage.getItem('bible_app_language')); if (T[s]) lang = s; else { var n = (navigator.language || 'en').slice(0, 2); if (T[n]) lang = n; } } catch (e) {}
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = T[lang][el.getAttribute('data-t')]; });
+    document.getElementById('retry').addEventListener('click', function () { location.href = '/'; });
+  </script>
+</body>
+</html>
