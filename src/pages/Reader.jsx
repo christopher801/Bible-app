@@ -82,7 +82,7 @@ const css = `
 function InvalidChapter({ book, chapter }) {
   const { t, bookName } = useApp();
   const info = getBook(book);
-  usePageTitle(t('notfound.title'));
+  usePageTitle(t('notfound.title'), { noindex: true });
   return (
     <div className="page">
       <style>{css}</style>
@@ -116,7 +116,13 @@ function ChapterView({ book, chapter, tr }) {
   const [flash, setFlash] = useState(null);
   const target = parseInt(sp.get('verse') || '', 10) || null;
 
-  usePageTitle(`${bookName(book)} ${chapter}`);
+  // Must stay below the useState calls: it reads `state` for the page description.
+  usePageTitle(`${bookName(book)} ${chapter}`, {
+    description:
+      state.status === 'ok' && translation
+        ? `${bookName(book)} ${chapter} (${translation.abbr}) — ${state.verses.slice(0, 3).join(' ')}`
+        : undefined
+  });
 
   useEffect(() => {
     let alive = true;

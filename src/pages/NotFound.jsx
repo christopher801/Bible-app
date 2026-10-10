@@ -5,7 +5,7 @@ import EmptyState from '../components/EmptyState.jsx';
 
 export default function NotFound() {
   const { t } = useApp();
-  usePageTitle(t('notfound.title'));
+  usePageTitle(t('notfound.title'), { noindex: true });
   return (
     <div className="page">
       <EmptyState icon="bi-compass" title={t('notfound.title')} text={t('notfound.text')}>

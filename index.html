@@ -3,18 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Bible App</title>
-    <meta name="description" content="A modern, accessible Bible reading application in Haitian Creole, Spanish, and English." />
+
+    <!-- Primary SEO -->
+    <title>Bible App — Read the Bible in Haitian Creole, Spanish and English</title>
+    <meta name="description" content="Free Bible app to read, search and study the Bible online or offline. Interface in Kreyòl ayisyen, Español and English. King James Version and Reina-Valera 1909, favorites, highlights, notes and reading plans." />
+    <meta name="keywords" content="Bible, Bib la, Biblia, Haitian Creole Bible, Reina-Valera 1909, King James Version, read Bible online, offline Bible, Bible app, reading plans" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="author" content="Bible App" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bible App" />
+    <meta property="og:title" content="Bible App — Read the Bible in Haitian Creole, Spanish and English" />
+    <meta property="og:description" content="Read, search and study the Bible online or offline. Favorites, highlights, notes and reading plans. No account needed." />
+    <meta property="og:image" content="https://dope-bible.vercel.app/icons/icon-512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Bible App logo: a book with a cross" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="fr_HT" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Bible App — Read the Bible in Haitian Creole, Spanish and English" />
+    <meta name="twitter:description" content="Read, search and study the Bible online or offline. No account needed." />
+    <meta name="twitter:image" content="https://dope-bible.vercel.app/icons/icon-512.png" />
+
+    <!-- PWA / mobile -->
     <meta name="theme-color" content="#FC6C26" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="application-name" content="Bible App" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Bible" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+    <!-- Structured data (helps Google understand the site) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://dope-bible.vercel.app/#website",
+            "url": "https://dope-bible.vercel.app/",
+            "name": "Bible App",
+            "description": "A modern, accessible Bible reading application in Haitian Creole, Spanish, and English.",
+            "inLanguage": ["ht", "es", "en"],
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": { "@type": "EntryPoint", "urlTemplate": "https://dope-bible.vercel.app/search?q={search_term_string}" },
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "WebApplication",
+            "@id": "https://dope-bible.vercel.app/#app",
+            "name": "Bible App",
+            "url": "https://dope-bible.vercel.app/",
+            "applicationCategory": "BookApplication",
+            "operatingSystem": "Any (web browser)",
+            "browserRequirements": "Requires JavaScript",
+            "inLanguage": ["ht", "es", "en"],
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "image": "https://dope-bible.vercel.app/icons/icon-512.png"
+          }
+        ]
+      }
+    </script>
+
     <script>
       // Apply the saved theme before first paint to avoid a flash.
       try {
@@ -26,10 +88,26 @@
         }
       } catch (e) {}
     </script>
+
+    <style>
+      /* Instant splash while the app loads (matches the cream theme) */
+      #root:empty { min-height: 100vh; background: #FFF4D6; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
-    <noscript>This application needs JavaScript to run.</noscript>
+    <noscript>
+      <main style="max-width:640px;margin:40px auto;padding:0 16px;font-family:system-ui,sans-serif;line-height:1.6">
+        <h1>Bible App</h1>
+        <p>Read the Bible in Haitian Creole, Spanish and English. This application needs JavaScript to run.</p>
+        <ul>
+          <li><a href="/bible">Bible books</a></li>
+          <li><a href="/search">Search</a></li>
+          <li><a href="/reading-plans">Reading plans</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
